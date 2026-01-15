@@ -1,17 +1,22 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class StorageService {
-  final _storage = const FlutterSecureStorage();
+  static const _keyToken = 'jwt_token';
 
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
+
+  // SIMPAN TOKEN
   Future<void> saveToken(String token) async {
-    await _storage.write(key: 'jwt_token', value: token);
+    await _storage.write(key: _keyToken, value: token);
   }
 
+  // AMBIL TOKEN
   Future<String?> getToken() async {
-    return await _storage.read(key: 'jwt_token');
+    return await _storage.read(key: _keyToken);
   }
 
+  // HAPUS TOKEN (LOGOUT)
   Future<void> deleteToken() async {
-    await _storage.delete(key: 'jwt_token');
+    await _storage.delete(key: _keyToken);
   }
 }

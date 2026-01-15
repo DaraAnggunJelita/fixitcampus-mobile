@@ -4,7 +4,7 @@ class Ticket {
   final String title;
   final String description;
   final String status;
-  final DateTime? createdAt; // Dibuat nullable
+  final DateTime? createdAt;
 
   Ticket({
     required this.id,
@@ -22,10 +22,9 @@ class Ticket {
       title: json['title'],
       description: json['description'],
       status: json['status'],
-      // Periksa null sebelum parsing
-      createdAt: json.containsKey('created_at') && json['created_at'] != null 
-                 ? DateTime.parse(json['created_at']) 
-                 : null,
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
+          : null,
     );
   }
 
